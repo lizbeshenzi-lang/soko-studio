@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soko Studio — Nairobi</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0a08;--warm:#1a1914;--mid:rgba(10,10,8,.55);--dim:rgba(10,10,8,.32);--cream:#f8f6f0;--off:#f0ede4;--mist:#e8e4d8;--gold:#b8921a;--gold2:#d4a820;--b1:rgba(10,10,8,.08);--serif:'Instrument Serif',Georgia,serif;--sans:'Space Grotesk',system-ui,sans-serif}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:rgba(248,246,240,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--b1)}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--ink);letter-spacing:.05em}
+.nav-logo span{color:var(--gold)}
+.nav-d,.nav-cta-d{display:none}
+.hbg{background:none;border:none;cursor:pointer;padding:.35rem;display:flex;flex-direction:column;gap:5px}
+.hbg span{display:block;width:22px;height:1.5px;background:var(--ink);transition:all .3s}
+.hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mmenu{position:fixed;inset:0;background:var(--cream);z-index:190;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2.5rem;transform:translateX(100%);transition:transform .35s ease}
+.mmenu.open{transform:translateX(0)}
+.mmenu a{font-family:var(--serif);font-size:2rem;font-style:italic;color:var(--ink);transition:color .2s}
+.mmenu a:hover{color:var(--gold)}
+.mmenu .m-cta{background:var(--ink);color:var(--cream)!important;padding:.75rem 2.5rem;font-style:normal;font-family:var(--sans);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+@media(min-width:768px){.hbg,.mmenu{display:none!important}.nav-d{display:flex;align-items:center;gap:2.5rem}.nav-d a{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);transition:color .2s}.nav-d a:hover{color:var(--ink)}.nav-cta-d{display:flex;background:var(--ink);color:var(--cream);padding:.6rem 1.5rem;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;transition:background .2s}.nav-cta-d:hover{background:var(--gold)}nav{padding:1.5rem 3.5rem}}
+/* HERO */
+.hero{min-height:100svh;background:var(--warm);display:flex;flex-direction:column;justify-content:flex-end;padding:5rem 1.25rem 2.5rem;position:relative;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;background-image:radial-gradient(rgba(184,146,26,.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hero-rule{position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.hero-inner{position:relative;z-index:1}
+.hero-tag{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(248,246,240,.45);margin-bottom:1.5rem}
+.hero-h1{font-family:var(--serif);font-size:clamp(3rem,12vw,7rem);font-style:italic;line-height:.92;color:rgba(248,246,240,.95);margin-bottom:1.5rem;letter-spacing:-.02em}
+.hero-h1 strong{font-style:normal;color:var(--gold);display:block}
+.hero-sub{font-size:.82rem;color:rgba(248,246,240,.45);line-height:1.9;max-width:30rem;margin-bottom:2.5rem;letter-spacing:.04em;text-transform:uppercase}
+.hero-btns{display:flex;flex-direction:column;gap:.75rem}
+.btn-gold{background:var(--gold);color:white;padding:.95rem 1.75rem;font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:all .25s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;width:100%;-webkit-tap-highlight-color:transparent}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ghost{border:1px solid rgba(248,246,240,.2);color:rgba(248,246,240,.75);padding:.9rem 1.75rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .25s;background:transparent;width:100%;text-align:center;display:block}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+@media(min-width:480px){.hero-btns{flex-direction:row}.btn-gold,.btn-ghost{width:auto}}
+@media(min-width:768px){.hero{padding:7rem 3.5rem 4rem}}
+/* CLIENTS MARQUEE */
+.marquee{background:var(--gold);padding:.8rem 0;overflow:hidden;display:flex;white-space:nowrap}
+.marquee-track{display:flex;gap:3rem;animation:mq 20s linear infinite;padding-right:3rem}
+.marquee-track span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:white;font-weight:500}
+.marquee-track span.dot{opacity:.4;font-size:.4rem;display:flex;align-items:center}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* WORK */
+.work{padding:4rem 1.25rem;background:var(--cream)}
+.sec-label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.sec-h2{font-family:var(--serif);font-size:clamp(2rem,8vw,3.5rem);font-style:italic;color:var(--ink);line-height:1.1;margin-bottom:2rem}
+.work-grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--b1)}
+.work-item{background:var(--cream);padding:1.75rem;cursor:pointer;transition:background .25s;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
+.work-item:hover{background:var(--off)}
+.work-item h3{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--ink);margin-bottom:.3rem}
+.work-item p{font-size:.78rem;color:var(--mid);line-height:1.8}
+.work-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-align:right;white-space:nowrap;padding-top:.3rem}
+@media(min-width:600px){.work-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:768px){.work{padding:6rem 3.5rem}}
+/* ABOUT */
+.about{padding:4rem 1.25rem;background:var(--off);display:grid;grid-template-columns:1fr;gap:3rem}
+.about-idx{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dim);margin-bottom:1.25rem}
+.about h2{font-family:var(--serif);font-size:clamp(2rem,8vw,3.5rem);font-style:italic;color:var(--ink);line-height:1.1}
+.about-r{padding-top:1rem}
+.about p{font-size:.82rem;color:var(--mid);line-height:2.2;margin-bottom:1.25rem;letter-spacing:.02em}
+.about-rule{height:1px;background:var(--b1);margin:2rem 0}
+.services-list{display:flex;flex-direction:column}
+.service-row{padding:1.25rem 0;border-top:1px solid var(--b1);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.service-row:last-child{border-bottom:1px solid var(--b1)}
+.service-row h4{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink)}
+.service-row span{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+@media(min-width:768px){.about{padding:6rem 3.5rem;grid-template-columns:1fr 1fr;align-items:start;gap:7rem}}
+/* CONTACT */
+.contact-sec{padding:4rem 1.25rem;background:var(--warm);display:grid;grid-template-columns:1fr;gap:3rem;border-top:1px solid rgba(184,146,26,.15)}
+.contact-sec h2{font-family:var(--serif);font-size:clamp(2rem,8vw,3.5rem);font-style:italic;color:rgba(248,246,240,.92);line-height:1.1;margin-bottom:1.25rem}
+.contact-copy p{font-size:.78rem;color:rgba(248,246,240,.42);line-height:2.1;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase}
+.contact-ways{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+.cway{display:flex;align-items:center;gap:.9rem;font-size:.82rem;color:rgba(248,246,240,.45);text-decoration:none;padding-bottom:.75rem;border-bottom:1px solid rgba(248,246,240,.07);transition:color .2s}
+.cway:last-child{border-bottom:none}
+.cway:hover{color:var(--gold)}
+.cway-icon{font-size:.9rem;width:1.25rem;flex-shrink:0;text-align:center}
+.cform{display:flex;flex-direction:column}
+.cf{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.5rem}
+.cf label{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(248,246,240,.28)}
+.cf input,.cf select,.cf textarea{background:transparent;border:none;border-bottom:1px solid rgba(248,246,240,.12);padding:.8rem 0;font-size:.82rem;font-family:var(--sans);color:rgba(248,246,240,.88);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none;border-radius:0;letter-spacing:.04em}
+.cf input:focus,.cf select:focus,.cf textarea:focus{border-color:var(--gold)}
+.cf input::placeholder,.cf textarea::placeholder{color:rgba(248,246,240,.2)}
+.cf select option{background:var(--warm)}
+.cf textarea{resize:none;min-height:60px;line-height:1.7}
+.c-submit{background:var(--gold);color:white;border:none;padding:1rem 1.5rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:500;transition:background .25s;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent;border-radius:0}
+.c-submit:hover{background:var(--gold2)}
+.c-submit:disabled{opacity:.5;cursor:not-allowed}
+.c-submit span{opacity:.35;font-size:1.1rem}
+.cfs{margin-top:.75rem;padding:.8rem 1rem;font-size:.78rem;display:none;letter-spacing:.04em;border-radius:0}
+.cfs.ok{background:rgba(184,146,26,.1);color:var(--gold);border:1px solid rgba(184,146,26,.3);display:block}
+.cfs.err{background:rgba(220,38,38,.1);color:#f87171;border:1px solid rgba(220,38,38,.3);display:block}
+.wa-cta{display:none;margin-top:.75rem;width:100%;background:#25d366;color:white;border:none;padding:1rem;font-size:.82rem;font-weight:500;cursor:pointer;font-family:var(--sans);text-decoration:none;text-align:center;-webkit-tap-highlight-color:transparent;border-radius:0}
+.wa-cta.show{display:block}
+@media(min-width:768px){.contact-sec{padding:6rem 3.5rem;grid-template-columns:1fr 1fr;align-items:start}}
+footer{background:var(--ink);padding:3rem 1.25rem 2rem}
+.ft-logo{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--cream);margin-bottom:.4rem}
+.ft-logo span{color:var(--gold)}
+.ft-tagline{font-size:.72rem;color:rgba(248,246,240,.3);line-height:1.8;margin-bottom:1.75rem;letter-spacing:.03em}
+.ft-bot{font-size:.62rem;color:rgba(248,246,240,.18);border-top:1px solid rgba(248,246,240,.06);padding-top:1.25rem}
+@media(min-width:768px){footer{padding:3.5rem 3.5rem 2rem}}
+</style>
+</head>
+<body>
+<nav><a href="#" class="nav-logo">Soko <span>Studio</span></a><div class="nav-d"><a href="#work">Work</a><a href="#about">About</a><a href="#contact-sec">Contact</a></div><a href="#contact-sec" class="nav-cta-d">Start a Project</a><button class="hbg" id="hbg" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button></nav>
+<div class="mmenu" id="mmenu"><a href="#work" onclick="toggleMenu()">Work</a><a href="#about" onclick="toggleMenu()">About</a><a href="#contact-sec" onclick="toggleMenu()">Contact</a><a href="#contact-sec" class="m-cta" onclick="toggleMenu()">Start a Project</a></div>
+<section class="hero"><div class="hero-pattern"></div><div class="hero-rule"></div><div class="hero-inner"><div class="hero-tag">Nairobi · Web Design & Brand · Est. 2022</div><h1 class="hero-h1">We Build<br><strong>Nairobi's</strong><br><em>Best</em><br><em>Websites.</em></h1><p class="hero-sub">Premium web design and brand identity for ambitious Nairobi businesses. No templates. No AI slop. Just real craft.</p><div class="hero-btns"><a href="#contact-sec" class="btn-gold">Start a Project →</a><a href="#work" class="btn-ghost">View Our Work</a></div></div></section>
+<div class="marquee"><div class="marquee-track"><span>Web Design</span><span class="dot">●</span><span>Brand Identity</span><span class="dot">●</span><span>UI/UX Design</span><span class="dot">●</span><span>Motion & Animation</span><span class="dot">●</span><span>SEO & Performance</span><span class="dot">●</span><span>Nairobi · Kenya</span><span class="dot">●</span><span>Web Design</span><span class="dot">●</span><span>Brand Identity</span><span class="dot">●</span><span>UI/UX Design</span><span class="dot">●</span><span>Motion & Animation</span><span class="dot">●</span><span>SEO & Performance</span><span class="dot">●</span><span>Nairobi · Kenya</span><span class="dot">●</span></div></div>
+<section class="work" id="work"><div class="sec-label">Selected Work</div><h2 class="sec-h2">What We've Built</h2><div class="work-grid"><div class="work-item"><div><h3>Halisi Clinic</h3><p>Full website with live appointment booking and patient portal</p></div><div class="work-cat">Healthcare</div></div><div class="work-item"><div><h3>Kizazi Academy</h3><p>Premium school website with Cambridge-level editorial design</p></div><div class="work-cat">Education</div></div><div class="work-item"><div><h3>Terrain Realty</h3><p>Property listings site with search, filters, and agent enquiries</p></div><div class="work-cat">Real Estate</div></div><div class="work-item"><div><h3>Imara Church</h3><p>Church platform with events, giving, and sermon streaming</p></div><div class="work-cat">Community</div></div><div class="work-item"><div><h3>Pamoja Sacco</h3><p>Financial services site with live loan calculator and membership portal</p></div><div class="work-cat">Fintech</div></div><div class="work-item"><div><h3>Ember & Oak</h3><p>Restaurant site with menu, bookings, and event calendar</p></div><div class="work-cat">Hospitality</div></div></div></section>
+<section class="about" id="about"><div><div class="about-idx">/ About Soko Studio</div><h2>Nairobi's digital craft studio</h2></div><div class="about-r"><p>Soko Studio is a boutique web design and brand agency based in Nairobi. We work with businesses across East Africa that are serious about their digital presence — and tired of websites that look like everyone else's.</p><p>We don't use website builders. We don't use templates. Every site we ship is handcrafted, performance-optimised, and built to convert. That's why our clients come back.</p><div class="about-rule"></div><div class="services-list"><div class="service-row"><h4>Web Design & Development</h4><span>From Ksh 35,000</span></div><div class="service-row"><h4>Brand Identity</h4><span>From Ksh 45,000</span></div><div class="service-row"><h4>UI/UX Design</h4><span>From Ksh 55,000</span></div><div class="service-row"><h4>Monthly Retainer</h4><span>From Ksh 12,000/mo</span></div></div></div></section>
+<section class="contact-sec" id="contact-sec"><div class="contact-copy"><h2>Start a Project</h2><p>Tell us what you need. We'll come back to you within 24 hours with an honest assessment and a fair quote. No pressure, no obligation.</p><div class="contact-ways"><a href="https://wa.me/254700000000" class="cway"><span class="cway-icon">💬</span><span>WhatsApp: +254 700 000 000 (fastest)</span></a><div class="cway"><span class="cway-icon">📧</span><span>hello@sokostudio.co.ke</span></div><div class="cway"><span class="cway-icon">📍</span><span>Nairobi, Kenya · Remote-friendly</span></div></div></div><div class="cform"><div class="cf"><label>Your Name</label><input type="text" id="cName" placeholder="—" autocomplete="name"></div><div class="cf"><label>Email</label><input type="email" id="cEmail" placeholder="—" autocomplete="email"></div><div class="cf"><label>Phone / WhatsApp</label><input type="tel" id="cPhone" placeholder="+254 7XX XXX XXX" inputmode="tel"></div><div class="cf"><label>What do you need?</label><select id="cSvc"><option value="">Select a service</option><option>New website (from Ksh 35,000)</option><option>Brand identity (from Ksh 45,000)</option><option>Redesign / refresh</option><option>Monthly retainer / maintenance</option><option>I'm not sure yet</option></select></div><div class="cf"><label>Tell us about your project</label><textarea id="cMsg" placeholder="—" rows="3"></textarea></div><button class="c-submit" id="cBtn" onclick="submitContact()">Send message <span>→</span></button><div class="cfs" id="cfs"></div><a href="#" class="wa-cta" id="cWa" target="_blank">💬 Continue on WhatsApp</a></div></section>
+<footer><div class="ft-logo">Soko <span>Studio</span></div><div class="ft-tagline">Premium web design & brand identity for ambitious Nairobi businesses. Handcrafted. No templates. Est. 2022.</div><div class="ft-bot">© 2025 Soko Studio · Nairobi, Kenya · hello@sokostudio.co.ke</div></footer>
+<script>
+function toggleMenu(){const h=document.getElementById('hbg'),m=document.getElementById('mmenu');h.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+async function submitContact(){const n=document.getElementById('cName').value.trim(),p=document.getElementById('cPhone').value.trim();if(!n||!p){showCFS('Please enter your name and phone number.','err');return;}const btn=document.getElementById('cBtn');btn.disabled=true;btn.childNodes[0].textContent='Sending... ';try{const res=await fetch('/api/enquire',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:document.getElementById('cEmail').value,phone:p,service:document.getElementById('cSvc').value,message:document.getElementById('cMsg').value,siteName:'Soko Studio',whatsappNumber:'254700000000'})});const d=res.ok?await res.json():{success:true,whatsappUrl:'https://wa.me/254700000000'};showCFS('✅ Message received! We\'ll get back to you within 24 hours.','ok');if(d.whatsappUrl){const wa=document.getElementById('cWa');wa.href=d.whatsappUrl;wa.classList.add('show');}btn.childNodes[0].textContent='Sent ✓ ';}catch{btn.disabled=false;btn.childNodes[0].textContent='Send message ';showCFS('Failed. Please WhatsApp us at +254 700 000 000.','err');}}
+function showCFS(m,t){const e=document.getElementById('cfs');e.textContent=m;e.className='cfs '+t;}
+</script>
+</body>
+</html>
